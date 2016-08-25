@@ -3,7 +3,7 @@ const container = {
 }
 
 const content = {
-  position: 'relative',
+  position: 'absolute',
   zIndex: 11
 }
 
