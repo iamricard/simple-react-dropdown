@@ -57,10 +57,7 @@ export default class Dropdown extends React.Component {
 
   render () {
     return (
-      <div
-        className={this.props.classNames.container}
-        style={styles.container}
-      >
+      <div className={this.props.classNames.container}>
         <div
           ref='trigger'
           style={this.state.isExpanded ? styles.trigger : {}}

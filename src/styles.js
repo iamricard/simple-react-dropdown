@@ -1,7 +1,3 @@
-const container = {
-  display: 'inline-block'
-}
-
 const content = {
   position: 'absolute',
   zIndex: 11
@@ -21,4 +17,4 @@ const trigger = {
   zIndex: 11
 }
 
-export {container, content, overlay, trigger}
+export {content, overlay, trigger}
