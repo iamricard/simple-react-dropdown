@@ -45,7 +45,7 @@ export default class Dropdown extends React.Component {
       <div className={this.props.classNames.container} onMouseDown={this.handleMouseDown}>
         {this.props.children}
         {isExpanded && this.props.content}
-        {isExpanded || this.overlay}
+        {isExpanded && this.overlay}
       </div>
     )
   }
