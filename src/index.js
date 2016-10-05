@@ -1,11 +1,22 @@
 import React from 'react'
-import * as styles from './styles'
+
+const sx = {
+  overlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    zIndex: 9
+  }
+}
 
 export default class Dropdown extends React.Component {
   static propTypes = {
-    label: React.PropTypes.any.isRequired,
+    children: React.PropTypes.any.isRequired,
     classNames: React.PropTypes.object,
-    onTriggerClick: React.PropTypes.func
+    content: React.PropTypes.any.isRequired,
+    onMouseDown: React.PropTypes.func
   }
 
   static defaultProps = {classNames: {}}
@@ -15,61 +26,27 @@ export default class Dropdown extends React.Component {
     this.state = {isExpanded: false}
   }
 
-  handleTriggerClick = () => {
-    if (typeof this.props.onTriggerClick === 'function') {
-      this.props.onTriggerClick()
-    }
-
+  handleMouseDown = (evt) => {
+    this.props.onMouseDown && this.props.onMouseDown(evt)
     this.setState({isExpanded: !this.state.isExpanded})
   }
 
-  handleOverlayClick = () => {
+  handleOverlayMouseDown = () => {
     this.setState({isExpanded: !this.state.isExpanded})
   }
 
-  renderContent = () => {
-    const {isExpanded} = this.state
-
-    if (!isExpanded) return
-
-    return (
-      <div
-        className={this.props.classNames.content}
-        style={isExpanded ? styles.content : {}}
-      >
-        {this.props.children}
-      </div>
-    )
-  }
-
-  renderOverlay = () => {
-    if (!this.state.isExpanded) return
-
-    return (
-      <div
-        ref='overlay'
-        style={styles.overlay}
-        onClick={this.handleOverlayClick}
-      >
-      </div>
-    )
+  overlay =
+    <div style={sx.overlay} onMouseDown={this.handleOverlayMouseDown} />
   }
 
   render () {
+    const {isExpanded} = this.state
+
     return (
-      <div className={this.props.classNames.container}>
-        <div
-          ref='trigger'
-          style={this.state.isExpanded ? styles.trigger : {}}
-          className={this.props.classNames.trigger}
-          onClick={this.handleTriggerClick}
-        >
-          {this.props.label}
-        </div>
-
-        {this.renderContent()}
-
-        {this.renderOverlay()}
+      <div className={this.props.classNames.container} onMouseDown={this.handleMouseDown}>
+        {this.props.children}
+        {isExpanded && this.props.content}
+        {isExpanded || this.renderOverlay()}
       </div>
     )
   }
