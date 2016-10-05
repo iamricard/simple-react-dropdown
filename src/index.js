@@ -37,7 +37,6 @@ export default class Dropdown extends React.Component {
 
   overlay =
     <div style={sx.overlay} onMouseDown={this.handleOverlayMouseDown} />
-  }
 
   render () {
     const {isExpanded} = this.state
