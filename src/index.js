@@ -28,8 +28,10 @@ export default class Dropdown extends React.Component {
   }
 
   handleMouseDown = (evt) => {
-    this.props.onMouseDown && this.props.onMouseDown(evt)
-    this.setState({isExpanded: !this.state.isExpanded})
+    if (evt.target === this.refs.container) {
+      this.props.onMouseDown && this.props.onMouseDown(evt)
+      this.setState({isExpanded: !this.state.isExpanded})
+    }
   }
 
   handleOverlayMouseDown = () => {
@@ -43,11 +45,8 @@ export default class Dropdown extends React.Component {
     const {isExpanded} = this.state
 
     return (
-      <div className={this.props.classNames.container}>
-        <div className={this.props.classNames.trigger} onMouseDown={this.handleMouseDown}>
-          {this.props.children}
-        </div>
-
+      <div ref='container' className={this.props.classNames.container} onMouseDown={this.handleMouseDown}>
+        {this.props.children}
         {isExpanded && this.props.content}
         {isExpanded && this.overlay}
       </div>
