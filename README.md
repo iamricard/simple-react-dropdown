@@ -61,6 +61,7 @@ Element/text/component that will be used as the menu.
 #### `classNames?: Object`
 
 * `container` key will be used for the `container` element wrapping the entire dropdown
+* `trigger` key will be used for the `trigger` element wrapping the children elements
 
 #### `onMouseDown?: (event: Event): void`
 

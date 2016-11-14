@@ -48,7 +48,11 @@ export default class Dropdown extends React.Component {
 
     return (
       <div className={this.props.classNames.container}>
-        <div onMouseDown={this.handleMouseDown} onTouchEnd={this.handleMouseDown}>
+        <div
+          className={this.props.classNames.trigger}
+          onMouseDown={this.handleMouseDown}
+          onTouchEnd={this.handleMouseDown}
+        >
           {this.props.children}
         </div>
 
