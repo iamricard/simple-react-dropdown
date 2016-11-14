@@ -24,6 +24,11 @@ import React from 'react'
 import Dropdown from 'simple-react-dropdown'
 
 class App extends React.Component {
+  handleMouseDown () {
+    // fetch options aync maybe?
+    // log that the dropdown has been opened? whatever you want!
+  }
+
   render () {
     const content = `
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -34,7 +39,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <Dropdown content={content}>
+        <Dropdown content={content} onMouseDown={this.handleMouseDown}>
           'Open me!'
         </Dropdown>
       </div>
@@ -57,6 +62,6 @@ Element/text/component that will be used as the menu.
 
 * `container` key will be used for the `container` element wrapping the entire dropdown
 
-#### `onTriggerClick?: (event: Event): void`
+#### `onMouseDown?: (event: Event): void`
 
 Callback for when the trigger element is clicked on.
