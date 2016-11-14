@@ -25,13 +25,17 @@ import Dropdown from 'simple-react-dropdown'
 
 class App extends React.Component {
   render () {
+    const content = `
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+      minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+      aliquip ex ea commodo consequat.
+    `
+
     return (
       <div>
-        <Dropdown label='simple dropdown'>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+        <Dropdown content={content}>
+          'Open me!'
         </Dropdown>
       </div>
     )
@@ -41,15 +45,17 @@ class App extends React.Component {
 
 ### Props
 
-#### `label: any`
+#### `children: any`
 
 Element/text/component that will be used as the trigger element.
 
+#### `content: any`
+
+Element/text/component that will be used as the menu.
+
 #### `classNames?: Object`
 
-* `trigger` key will be used for the `trigger` element wrapper as a class.
 * `container` key will be used for the `container` element wrapping the entire dropdown
-* `content` will be used for the actual content of the dropdown
 
 #### `onTriggerClick?: (event: Event): void`
 
