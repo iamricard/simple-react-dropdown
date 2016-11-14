@@ -1,17 +1,5 @@
 import React from 'react'
 
-const sx = {
-  overlay: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    cursor: 'default',
-    zIndex: 9
-  }
-}
-
 export default class Dropdown extends React.Component {
   static propTypes = {
     children: React.PropTypes.any.isRequired,
@@ -20,35 +8,50 @@ export default class Dropdown extends React.Component {
     onMouseDown: React.PropTypes.func
   }
 
-  static defaultProps = {classNames: {}}
+  static defaultProps =
+    { classNames: {}
+    }
 
-  constructor (props) {
-    super(props)
-    this.state = {isExpanded: false}
+  state =
+    { isExpanded: false
+    }
+
+  componentDidMount () {
+    this.mounted = true
+    document.addEventListener('click', this.handleDocumentClick, false)
+    document.addEventListener('touchend', this.handleDocumentClick, false)
   }
 
-  handleMouseDown = (evt) => {
-    if (evt.target === this.refs.container) {
-      this.props.onMouseDown && this.props.onMouseDown(evt)
-      this.setState({isExpanded: !this.state.isExpanded})
+  componentWillUnmount () {
+    this.mounted = false
+    document.removeEventListener('click', this.handleDocumentClick, false)
+    document.removeEventListener('touchend', this.handleDocumentClick, false)
+  }
+
+  handleDocumentClick = (evt) => {
+    if (this.mounted) {
+      if (!ReactDOM.findDOMNode(this).contains(event.target)) {
+        this.setState({ isExpanded: false })
+      }
     }
   }
 
-  handleOverlayMouseDown = () => {
-    this.setState({isExpanded: !this.state.isExpanded})
+  handleMouseDown = (evt) => {
+    if (evt.type === 'mousedown' && event.button !== 0) return
+
+    this.setState({ isExpanded: !this.state.isExpanded })
   }
 
-  overlay =
-    <div style={sx.overlay} onMouseDown={this.handleOverlayMouseDown} />
-
   render () {
-    const {isExpanded} = this.state
+    const { isExpanded } = this.state
 
     return (
-      <div ref='container' className={this.props.classNames.container} onMouseDown={this.handleMouseDown}>
-        {this.props.children}
+      <div className={this.props.classNames.container}>
+        <div onMouseDown={this.handleMouseDown} onTouchEnd={this.handleMouseDown}>
+          {this.props.children}
+        </div>
+
         {isExpanded && this.props.content}
-        {isExpanded && this.overlay}
       </div>
     )
   }
