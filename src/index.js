@@ -31,7 +31,7 @@ export default class Dropdown extends React.Component {
 
   handleDocumentClick = (evt) => {
     if (this.mounted) {
-      if (!ReactDOM.findDOMNode(this).contains(event.target)) {
+      if (!ReactDOM.findDOMNode(this).contains(evt.target)) {
         this.setState({ isExpanded: false })
       }
     }
