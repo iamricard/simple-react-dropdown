@@ -38,7 +38,7 @@ export default class Dropdown extends React.Component {
   }
 
   handleMouseDown = (evt) => {
-    if (evt.type === 'mousedown' && event.button !== 0) return
+    if (evt.type === 'mousedown' && evt.button !== 0) return
 
     this.props.onMouseDown && this.props.onMouseDown(evt)
     this.setState({ isExpanded: !this.state.isExpanded })
