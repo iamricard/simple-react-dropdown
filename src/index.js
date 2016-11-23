@@ -6,6 +6,7 @@ export default class Dropdown extends React.Component {
     children: React.PropTypes.any.isRequired,
     classNames: React.PropTypes.object,
     content: React.PropTypes.any.isRequired,
+    disabled: React.PropTypes.bool,
     onMouseDown: React.PropTypes.func
   }
 
@@ -38,6 +39,7 @@ export default class Dropdown extends React.Component {
   }
 
   handleMouseDown = (evt) => {
+    if (this.props.disabled) return
     if (evt.type === 'mousedown' && evt.button !== 0) return
 
     this.props.onMouseDown && this.props.onMouseDown(evt)

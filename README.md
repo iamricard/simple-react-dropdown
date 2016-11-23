@@ -63,6 +63,10 @@ Element/text/component that will be used as the menu.
 * `container` key will be used for the `container` element wrapping the entire dropdown
 * `trigger` key will be used for the `trigger` element wrapping the children elements
 
+#### `disabled?: Boolean`
+
+Will prevent any clicks from actually opening the dropdown or running `onMouseDown`.
+
 #### `onMouseDown?: (event: Event): void`
 
 Callback for when the trigger element is clicked on.
