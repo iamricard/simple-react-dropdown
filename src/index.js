@@ -1,17 +1,23 @@
+/* eslint-disable comma-style */
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 
 export default class Dropdown extends React.Component {
-  static propTypes = {
-    children: React.PropTypes.any.isRequired,
-    classNames: React.PropTypes.object,
-    content: React.PropTypes.any.isRequired,
-    disabled: React.PropTypes.bool,
-    onMouseDown: React.PropTypes.func
-  }
+  static propTypes =
+    { children: React.PropTypes.any.isRequired
+    , classNames: React.PropTypes.object
+    , containerProps: React.PropTypes.object
+    , content: React.PropTypes.any.isRequired
+    , disabled: React.PropTypes.bool
+    , onMouseDown: React.PropTypes.func
+    , triggerProps: React.PropTypes.object
+    }
 
   static defaultProps =
     { classNames: {}
+    , containerProps: {}
+    , triggerProps: {}
     }
 
   state =
@@ -50,11 +56,12 @@ export default class Dropdown extends React.Component {
     const { isExpanded } = this.state
 
     return (
-      <div className={this.props.classNames.container}>
+      <div className={this.props.classNames.container} {...this.props.containerProps}>
         <div
           className={this.props.classNames.trigger}
           onMouseDown={this.handleMouseDown}
           onTouchEnd={this.handleMouseDown}
+          {...this.props.triggerProps}
         >
           {this.props.children}
         </div>
