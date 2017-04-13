@@ -1,5 +1,7 @@
 # simple-react-dropdown
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/rcsole/simple-react-dropdown.svg)](https://greenkeeper.io/)
+
 ## Synposis
 
 `simple-react-dropdown` is a very simple component that provides a dropdown of
